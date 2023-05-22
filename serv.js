@@ -1,17 +1,33 @@
 const express = require('express');
 const app = express();
-const axios=require('axios');
+var request = require('request');
+
 
 app.get('/favicon.ico', function(req, res) { 
   res.statusCode=204
   res.end();
 });
-app.get('/', (req, res) => {
+
+app.get('/:part', async (req, res) => {
+
+ 
+
+  request(`https://sort.onrender.com/${req.params.part}`, function (error, response, body) {
+    if (!error && response.statusCode === 200) {
+      
+
+    
+
+
+        res.send(body)
+}
+else{
+  console.log(error)
+}
+})
   
 
-// axios.get('http://localhost:5000',{headers:req['headers']}
-// )
-console.log(req['headers'])
+
 });
 
 
